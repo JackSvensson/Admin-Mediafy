@@ -12,6 +12,4 @@ Route::view('/', 'home');
 
 Route::get('/panel', PanelController::class);
 
-
-
-Route::post('/product', ProductController::class, 'create');
+Route::post('/product', [ProductController::class, 'create']);
