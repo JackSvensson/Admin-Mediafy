@@ -11,7 +11,6 @@ class ProductController extends Controller
 
     // In App\Http\Controllers\ProductController.php
 
-
     public function create(Request $request)
     {
         $title = new Title();
