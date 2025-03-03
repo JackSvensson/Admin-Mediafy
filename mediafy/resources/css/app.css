@@ -8,6 +8,25 @@
 
 @theme {
     --font-poppins: 'Poppins';
+    /*Fixa font*/
     --color-purple-1: #9181F4;
     --color-purple-2: #5038ED;
+
+    --color-primary-1: #CB3CFF;
+    --color-primary-2: #7F25FB;
+
+    --color-secondary-1: #0B1739;
+    --color-secondary-2: #8951FF;
+    --color-secondary-3: #21C3FC;
+    --color-secondary-4: #0E43FB;
+    --color-secondary-5: #FDB52A;
+
+    --color-neutral-1: #fff;
+    --color-neutral-2: #D9E1FA;
+    --color-neutral-3: #D1DBF9;
+    --color-neutral-4: #AEB9E1;
+    --color-neutral-5: #7E89AC;
+    --color-neutral-6: #37446B;
+    --color-neutral-7: #212C4D;
+    --color-neutral-8: #080F25;
 }
