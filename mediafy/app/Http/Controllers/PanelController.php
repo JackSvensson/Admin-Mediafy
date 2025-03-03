@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Title;
+use App\Models\Product;
 
 class PanelController extends Controller
 {
-
     public function index()
     {
-        return view('panel');
+        // Get all titles with their related platforms
+        $titles = Title::with(['products.platform'])->get();
+
+        return view('panel', compact('titles'));
     }
 
     public function addProduct()

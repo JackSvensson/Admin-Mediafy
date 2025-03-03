@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 
-class Platforms extends Model
+class Platform extends Model
 {
     //
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -20,4 +20,21 @@ class Platforms extends Model
     protected $fillable = [
         'type'
     ];
+
+    /**
+     * Get all titles for this platform
+     */
+    public function titles()
+    {
+        return $this->belongsToMany(Title::class, 'products')
+            ->withPivot(['price', 'stock']);
+    }
+
+    /**
+     * Get all products for this platform
+     */
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }
