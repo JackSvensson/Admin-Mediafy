@@ -6,8 +6,14 @@ use Illuminate\Http\Request;
 
 class PanelController extends Controller
 {
-    public function __invoke(Request $request)
+
+    public function index()
     {
         return view('panel');
+    }
+
+    public function addProduct()
+    {
+        return view('addproduct');
     }
 }
