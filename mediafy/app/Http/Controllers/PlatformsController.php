@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\platforms;
+use App\Models\platform;
 use Illuminate\Http\Request;
 
 class PlatformsController extends Controller
@@ -34,7 +34,7 @@ class PlatformsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(platforms $platforms)
+    public function show(platform $platforms)
     {
         //
     }
@@ -42,7 +42,7 @@ class PlatformsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(platforms $platforms)
+    public function edit(platform $platforms)
     {
         //
     }
@@ -50,7 +50,7 @@ class PlatformsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, platforms $platforms)
+    public function update(Request $request, platform $platforms)
     {
         //
     }
@@ -58,7 +58,7 @@ class PlatformsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(platforms $platforms)
+    public function destroy(Platform $platforms)
     {
         //
     }
