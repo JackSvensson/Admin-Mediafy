@@ -1,10 +1,12 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel</title>
     @vite('resources/css/app.css')
 </head>
+
 <body class="bg-neutral-8 text-neutral-1">
     <main class="flex flex-row">
         <section id="sidebar" class="flex flex-col p-4 w-[250px]">
@@ -25,12 +27,12 @@
             <div id="addProductForm" class="bg-secondary-1 rounded-md p-4 border-1 border-neutral-7">
                 <form method='POST' action="/product">
                     @csrf
-                    
+
                     <div class="mb-4">
                         <label for="title" class="block mb-2">Title</label>
                         <input name="title" id="title" type="text" class="w-full bg-neutral-8 text-neutral-1 border-1 border-neutral-7 p-2 rounded-md" required />
                     </div>
-                    
+
                     <div class="mb-4">
                         <label class="block mb-2">Platforms</label>
                         <div class="flex space-x-4">
@@ -48,17 +50,17 @@
                             </label>
                         </div>
                     </div>
-                    
+
                     <div class="mb-4">
                         <label for="price" class="block mb-2">Price (kr)</label>
                         <input name="price" id="price" type="number" class="w-full bg-neutral-8 text-neutral-1 border-1 border-neutral-7 p-2 rounded-md" required />
                     </div>
-                    
+
                     <div class="mb-4">
                         <label for="stock" class="block mb-2">Antal i lager</label>
                         <input name="stock" id="stock" type="number" class="w-full bg-neutral-8 text-neutral-1 border-1 border-neutral-7 p-2 rounded-md" required />
                     </div>
-                    
+
                     <button type="submit" class="bg-primary-1 px-6 py-2 inline-block rounded-md">
                         Save
                     </button>
@@ -67,4 +69,5 @@
         </section>
     </main>
 </body>
+
 </html>
