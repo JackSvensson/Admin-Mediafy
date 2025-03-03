@@ -14,6 +14,6 @@ class PanelController extends Controller
 
     public function addProduct()
     {
-        return view('addproduct');
+        return view('add');
     }
 }

@@ -1,9 +1,13 @@
-<form method='POST' action="/product">
-    @csrf
+<html lang="en">
 
-    <div>
-        <label for="title">Title</label>
-        <input name="title" id="title" type="text" />
-    </div>
-    <button type="submit">Create</button>
-</form>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel</title>
+</head>
+
+<body>
+    <h1>Panel site</h1>
+</body>
+
+</html>
