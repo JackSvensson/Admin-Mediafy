@@ -16,7 +16,7 @@
             <ul class="text-neutral-4 text-xl flex flex-col gap-2">
                 <li><a href="/" class="text-neutral-1">Products</a></li>
                 <li><a href="/">Users</a></li>
-                <li><a href="/">Logout</a></li>
+                <li><a href="/logout">Logout</a></li>
             </ul>
         </section>
         <section id="maincontent" class="w-full h-[100vh] px-10">

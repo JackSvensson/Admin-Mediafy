@@ -18,5 +18,8 @@ class DatabaseSeeder extends Seeder
         Title::factory()->create([
             'name' => 'Star wars',
         ]);
+
+        //För testning
+        User::factory(10)->create();
     }
 }
