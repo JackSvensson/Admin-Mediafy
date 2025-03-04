@@ -1,0 +1,108 @@
+/* Accessibility styles */
+
+/* Ensure text can be resized without breaking layout */
+body {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+html {
+    font-size: 100%; /* This allows user settings to control text size */
+}
+
+/* Ensure sufficient color contrast */
+.text-neutral-1 {
+    color: #f8fafc; /* Light color for text on dark backgrounds */
+}
+
+.bg-neutral-8 {
+    background-color: #0f172a; /* Dark background */
+}
+
+/* Focus styles for better keyboard navigation */
+a:focus, 
+button:focus, 
+input:focus, 
+select:focus, 
+textarea:focus {
+    outline: 2px solid #60a5fa;
+    outline-offset: 2px;
+}
+
+/* Error states with both color and icons */
+.error-text {
+    color: #ef4444;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.error-text::before {
+    content: "⚠️";
+}
+
+.input-error {
+    border: 2px solid #ef4444;
+}
+
+/* Add icons for action buttons for non-color meaning */
+.edit-icon::before {
+    content: "✏️ ";
+}
+
+.delete-icon::before {
+    content: "🗑️ ";
+}
+
+/* Skip to main content link for keyboard users */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #6b46c1; /* Purple color matching the gradient */
+    color: white;
+    padding: 8px;
+    z-index: 100;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Login page specific styles */
+/* Improved focus states for form elements */
+input:focus, button:focus, a:focus {
+    outline: 2px solid #6b46c1; /* Purple outline */
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (forced-colors: active) {
+    .bg-gradient-to-r {
+        background: ButtonText !important;
+    }
+    
+    button, a {
+        forced-color-adjust: none;
+    }
+}
+
+/* Reduced motion preference support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Error styles with both color and icons for better accessibility */
+.login-error {
+    color: #dc2626; /* Red 600 */
+    border-left: 4px solid #dc2626;
+    padding-left: 1rem;
+    display: flex;
+    align-items: center;
+}
