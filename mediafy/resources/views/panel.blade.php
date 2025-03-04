@@ -24,7 +24,22 @@
                 <h1 class="text-xl font-semibold">Product list</h1>
                 <a href="/panel/addproduct" class="bg-primary-1 px-6 py-2 inline-block rounded-md">Add new product</a>
             </header>
+
+            <div id="filter" class="bg-secondary-1 rounded-md p-4 border-1 border-neutral-7 mb-10">
+                <form action="/panel" method="get">
+                    <label for="platform-select">Choose Platform: </label>
+                    <select name="platform" id="platform-select" class="text-neutral-1 bg-secondary-1">
+                        <option value="All" selected>All</option>
+                        <option value="Xbox">Xbox</option>
+                        <option value="Playstation">Playstation</option>
+                        <option value="Nintendo">Nintendo Switch</option>
+                    </select>
+
+                    <button type="submit" class="bg-primary-1 px-6 py-2 inline-block rounded-md">Apply filter</button>
+                </form>
+            </div>
             <div id="productsTable" class="bg-secondary-1 rounded-md p-4 border-1 border-neutral-7">
+
                 <h2 class="text-xl pb-4">Alla produkter</h2>
                 <table class="min-w-full table-auto">
                     <thead class="text-left">
@@ -46,6 +61,7 @@
                             <td class="px-4 py-2">{{ $product->stock }}st</td>
                             <td class="px-4 py-2">
                                 <a href="/edit" class="text-blue-500">Edit</a> |
+
                                 <form action="{{ route('delete', $product->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')

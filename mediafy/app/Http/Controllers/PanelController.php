@@ -9,10 +9,21 @@ use App\Models\Product;
 
 class PanelController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Get all titles with their related platforms
-        $titles = Title::with(['products.platform'])->get();
+        $platform = $request->input('platform', 'All');
+
+        if ($platform == 'All') {
+            // Hämtar alla platform
+            $titles = Title::with(['products.platform'])->get();
+        } else {
+
+            $titles = Title::with(['products.platform'])
+                ->whereHas('products.platform', function ($query) use ($platform) {
+                    $query->where('type', $platform);
+                })
+                ->get();
+        }
 
         return view('panel', compact('titles'));
     }

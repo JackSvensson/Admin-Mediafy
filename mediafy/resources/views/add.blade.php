@@ -45,7 +45,7 @@
                                 Xbox
                             </label>
                             <label class="flex items-center">
-                                <input type="checkbox" name="platforms[]" value="Nintendo Switch" class="mr-2 bg-neutral-8 border-neutral-7">
+                                <input type="checkbox" name="platforms[]" value="Nintendo" class="mr-2 bg-neutral-8 border-neutral-7">
                                 Nintendo Switch
                             </label>
                         </div>
