@@ -1,10 +1,12 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel</title>
     @vite('resources/css/app.css')
 </head>
+
 <body class="bg-neutral-8 text-neutral-1">
     <main class="flex flex-row">
         <section id="sidebar" class="flex flex-col p-4 w-[250px]">
@@ -36,18 +38,22 @@
                     </thead>
                     <tbody>
                         @foreach($titles as $title)
-                            @foreach($title->products as $product)
-                                <tr>
-                                    <td class="px-4 py-2">{{ $title->name }}</td>
-                                    <td class="px-4 py-2">{{ $product->platform->type }}</td>
-                                    <td class="px-4 py-2">{{ $product->price }}kr</td>
-                                    <td class="px-4 py-2">{{ $product->stock }}st</td>
-                                    <td class="px-4 py-2">
-                                        <a href="/edit" class="text-blue-500">Edit</a> |
-                                        <a href="/delete" class="text-red-500">Delete</a>
-                                    </td>
-                                </tr>
-                            @endforeach
+                        @foreach($title->products as $product)
+                        <tr>
+                            <td class="px-4 py-2">{{ $title->name }}</td>
+                            <td class="px-4 py-2">{{ $product->platform->type }}</td>
+                            <td class="px-4 py-2">{{ $product->price }}kr</td>
+                            <td class="px-4 py-2">{{ $product->stock }}st</td>
+                            <td class="px-4 py-2">
+                                <a href="/edit" class="text-blue-500">Edit</a> |
+                                <form action="{{ route('delete', $product->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-red-500 bg-transparent border-none cursor-pointer">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
                         @endforeach
                     </tbody>
                 </table>
@@ -55,4 +61,5 @@
         </section>
     </main>
 </body>
+
 </html>

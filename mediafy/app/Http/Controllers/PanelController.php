@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Title;
 use App\Models\Product;
 
+
 class PanelController extends Controller
 {
     public function index()
@@ -19,5 +20,12 @@ class PanelController extends Controller
     public function addProduct()
     {
         return view('add');
+    }
+
+    public function deleteProduct($id)
+    {
+        $product = Product::findOrFail($id);
+        $product->delete();
+        return redirect('/panel');
     }
 }

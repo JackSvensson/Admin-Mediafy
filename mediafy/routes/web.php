@@ -19,6 +19,6 @@ Route::get('/panel', [PanelController::class, 'index'])->middleware("auth");
 
 Route::get('/panel/addproduct', [PanelController::class, 'addproduct']);
 
-
+Route::delete('/panel/product{id}/delete', [PanelController::class, 'deleteProduct'])->name("delete");
 
 Route::post('/product', [ProductController::class, 'create']);
