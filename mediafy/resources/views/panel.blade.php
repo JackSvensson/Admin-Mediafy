@@ -15,14 +15,18 @@
 
             <ul class="text-neutral-4 text-xl flex flex-col gap-2">
                 <li><a href="/" class="text-neutral-1">Products</a></li>
+                @if (auth()->user()->isAdmin())
                 <li><a href="/">Users</a></li>
+                @endif
                 <li><a href="/logout">Logout</a></li>
             </ul>
         </section>
         <section id="maincontent" class="w-full h-[100vh] px-10">
             <header class="flex justify-between pt-4 pb-6 items-center">
                 <h1 class="text-xl font-semibold">Product list</h1>
+                @if (auth()->user()->isAdmin())
                 <a href="/panel/addproduct" class="bg-primary-1 px-6 py-2 inline-block rounded-md">Add new product</a>
+                @endif
             </header>
 
             <div id="filter" class="bg-secondary-1 rounded-md p-4 border-1 border-neutral-7 mb-10">
@@ -59,6 +63,7 @@
                             <td class="px-4 py-2">{{ $product->platform->type }}</td>
                             <td class="px-4 py-2">{{ $product->price }}kr</td>
                             <td class="px-4 py-2">{{ $product->stock }}st</td>
+                            @if (auth()->user()->isAdmin())
                             <td class="px-4 py-2">
                                 <a href="{{ route('panel.product.edit', $product->id) }}" class="text-blue-500">Edit</a> |
 
@@ -68,6 +73,7 @@
                                     <button type="submit" class="text-red-500 bg-transparent border-none cursor-pointer">Delete</button>
                                 </form>
                             </td>
+                            @endif
                         </tr>
                         @endforeach
                         @endforeach

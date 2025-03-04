@@ -14,12 +14,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-
+        /* Lägg till detta i seed
         Title::factory()->create([
             'name' => 'Star wars',
         ]);
+        */
 
-        //För testning
-        User::factory(10)->create();
+
+        User::factory(5)->create(['role' => 'standard']);
+        User::factory(5)->create(['role' => 'admin']);
     }
 }

@@ -15,7 +15,6 @@ class PanelController extends Controller
         $platform = $request->input('platform', 'ALL');
 
         if ($platform == 'ALL') {
-            // Hämtar alla platform
             $titles = Title::with(['products.platform'])
                 ->whereHas('products.platform', function ($query) {
                     $query->whereIn('type', ['Xbox', 'Playstation', 'Nintendo']);
@@ -39,8 +38,10 @@ class PanelController extends Controller
 
     public function deleteProduct($id)
     {
-        $product = Product::findOrFail($id);
-        $product->delete();
+        if (auth()->user()->isAdmin()) {
+            $product = Product::findOrFail($id);
+            $product->delete();
+        }
 
         return redirect('/panel');
     }
@@ -59,45 +60,47 @@ class PanelController extends Controller
      */
     public function updateProduct(Request $request, $id)
     {
-        // Add debugging to see what's happening
-        Log::info('Update Product Request', [
-            'id' => $id,
-            'request' => $request->all()
-        ]);
+        if (auth()->user()->isAdmin()) {
+            // Add debugging to see what's happening
+            Log::info('Update Product Request', [
+                'id' => $id,
+                'request' => $request->all()
+            ]);
 
-        // Validate the request
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'platforms' => 'required|array',
-            'price' => 'required|numeric|min:0',
-            'stock' => 'required|integer|min:0',
-        ]);
+            // Validate the request
+            $validated = $request->validate([
+                'title' => 'required|string|max:255',
+                'platforms' => 'required|array',
+                'price' => 'required|numeric|min:0',
+                'stock' => 'required|integer|min:0',
+            ]);
 
-        // Find the product
-        $product = Product::with('title')->findOrFail($id);
+            // Find the product
+            $product = Product::with('title')->findOrFail($id);
 
-        // Update the title name
-        $product->title->name = $request->input('title');
-        $product->title->save();
+            // Update the title name
+            $product->title->name = $request->input('title');
+            $product->title->save();
 
-        // Update platform if it has changed
-        if (!empty($request->input('platforms'))) {
-            $platformType = $request->input('platforms')[0]; // Get the first selected platform
-            $platform = Platform::firstOrCreate(['type' => $platformType]);
-            $product->platform_id = $platform->id;
+            // Update platform if it has changed
+            if (!empty($request->input('platforms'))) {
+                $platformType = $request->input('platforms')[0]; // Get the first selected platform
+                $platform = Platform::firstOrCreate(['type' => $platformType]);
+                $product->platform_id = $platform->id;
+            }
+
+            // Update price and stock
+            $product->price = $request->input('price');
+            $product->stock = $request->input('stock');
+
+            // Save the product changes
+            $saved = $product->save();
+
+            Log::info('Product Update Result', [
+                'saved' => $saved,
+                'product_after_save' => $product->toArray()
+            ]);
         }
-
-        // Update price and stock
-        $product->price = $request->input('price');
-        $product->stock = $request->input('stock');
-
-        // Save the product changes
-        $saved = $product->save();
-
-        Log::info('Product Update Result', [
-            'saved' => $saved,
-            'product_after_save' => $product->toArray()
-        ]);
 
         // Explicitly redirect back to the panel
         return redirect('/panel');
