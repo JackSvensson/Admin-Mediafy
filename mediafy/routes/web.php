@@ -21,4 +21,7 @@ Route::get('/panel/addproduct', [PanelController::class, 'addproduct']);
 
 Route::delete('/panel/product{id}/delete', [PanelController::class, 'deleteProduct'])->name("delete");
 
+Route::get('/panel/product/{id}/edit', [PanelController::class, 'editProduct'])->name('panel.product.edit');
+Route::put('/panel/product/{id}/update', [PanelController::class, 'updateProduct'])->name('panel.product.update');
+
 Route::post('/product', [ProductController::class, 'create']);

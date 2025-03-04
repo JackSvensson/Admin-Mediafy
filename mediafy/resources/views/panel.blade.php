@@ -60,7 +60,7 @@
                             <td class="px-4 py-2">{{ $product->price }}kr</td>
                             <td class="px-4 py-2">{{ $product->stock }}st</td>
                             <td class="px-4 py-2">
-                                <a href="/edit" class="text-blue-500">Edit</a> |
+                                <a href="{{ route('panel.product.edit', $product->id) }}" class="text-blue-500">Edit</a> |
 
                                 <form action="{{ route('delete', $product->id) }}" method="POST" style="display:inline;">
                                     @csrf

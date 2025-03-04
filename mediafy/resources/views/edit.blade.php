@@ -13,7 +13,7 @@
                 <h1 class="text-xl font-semibold">Admin Panel</h1>
             </div>
             <ul>
-                <li><a href="/" class="text-neutral-1">Products</a></li>
+                <li><a href="/panel" class="text-neutral-1">Products</a></li>
                 <li><a href="/" class="text-neutral-1">Users</a></li>
                 <li><a href="/logout" class="text-neutral-1">Logout</a></li>
             </ul>
@@ -23,7 +23,8 @@
                 <h1 class="text-xl font-semibold">Edit product</h1>
             </header>
             <div id="editProductForm" class="bg-secondary-1 rounded-md p-4 border-1 border-neutral-7">
-                <form method="POST" action="{{ route('panel.product.update', $product->id) }}">
+                <!-- Change form action to use the exact path rather than route helper -->
+                <form method="POST" action="/panel/product/{{ $product->id }}/update">
                     @csrf
                     @method('PUT')
                     
@@ -44,7 +45,7 @@
                                 Xbox
                             </label>
                             <label class="flex items-center">
-                                <input type="checkbox" name="platforms[]" value="Nintendo Switch" class="mr-2 bg-neutral-8 border-neutral-7" {{ $product->platform->type == 'Nintendo Switch' ? 'checked' : '' }}>
+                                <input type="checkbox" name="platforms[]" value="Nintendo" class="mr-2 bg-neutral-8 border-neutral-7" {{ $product->platform->type == 'Nintendo' ? 'checked' : '' }}>
                                 Nintendo Switch
                             </label>
                         </div>
