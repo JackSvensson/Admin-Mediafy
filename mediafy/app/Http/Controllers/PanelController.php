@@ -15,14 +15,17 @@ class PanelController extends Controller
 
         if ($platform == 'All') {
             // Hämtar alla platform
-            $titles = Title::with(['products.platform'])->get();
+            $titles = Title::with(['products.platform'])
+                ->whereHas('products.platform', function ($query) {
+                    $query->whereIn('type', ['Xbox', 'Playstation', 'Nintendo']); //Kanske går lösa annat vis
+                })
+                ->paginate(3);
         } else {
 
             $titles = Title::with(['products.platform'])
                 ->whereHas('products.platform', function ($query) use ($platform) {
                     $query->where('type', $platform);
-                })
-                ->get();
+                })->paginate(3);
         }
 
         return view('panel', compact('titles'));

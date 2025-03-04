@@ -29,10 +29,10 @@
                 <form action="/panel" method="get">
                     <label for="platform-select">Choose Platform: </label>
                     <select name="platform" id="platform-select" class="text-neutral-1 bg-secondary-1">
-                        <option value="All" selected>All</option>
-                        <option value="Xbox">Xbox</option>
-                        <option value="Playstation">Playstation</option>
-                        <option value="Nintendo">Nintendo Switch</option>
+                        <option value="All" {{ request('platform') == 'All' ? 'selected' : '' }}>All</option>
+                        <option value="Xbox" {{ request('platform') == 'Xbox' ? 'selected' : '' }}>Xbox</option>
+                        <option value="Playstation" {{ request('platform') == 'Playstation' ? 'selected' : '' }}>Playstation</option>
+                        <option value="Nintendo" {{ request('platform') == 'Nintendo' ? 'selected' : '' }}>Nintendo Switch</option>
                     </select>
 
                     <button type="submit" class="bg-primary-1 px-6 py-2 inline-block rounded-md">Apply filter</button>
@@ -73,8 +73,13 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="mt-4">
+                    {{ $titles->appends(['platform' => request('platform')])->links() }}
+                </div>
             </div>
+
         </section>
+
     </main>
 </body>
 
