@@ -16,9 +16,7 @@ class ProductController extends Controller
      */
     public function create(Request $request)
     {
-        $user = auth()->user();
-        if ($user->isAdmin()) {
-            // Validate the input with clear, descriptive error messages
+        // Validate the input with clear, descriptive error messages
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'platforms' => 'required|array',
@@ -38,30 +36,27 @@ class ProductController extends Controller
         try {
             // Create the title first
             $title = new Title();
-                $title->name = $validated['title'];
-                $title->save();
+            $title->name = $validated['title'];
+            $title->save();
 
             // For each platform, create a product
             foreach ($validated['platforms'] as $platformType) {
                 // Find or create the platform
                 $platform = Platform::firstOrCreate(['type' => $platformType]);
 
-                    // Create the product
-                    $product = new Product();
-                    $product->title_id = $title->id;
-                    $product->platform_id = $platform->id;
-                    $product->price = $validated['price'];
-                    $product->stock = $validated['stock'];
-                    $product->save();
-                }
-        }
+                // Create the product
+                $product = new Product();
+                $product->title_id = $title->id;
+                $product->platform_id = $platform->id;
+                $product->price = $validated['price'];
+                $product->stock = $validated['stock'];
+                $product->save();
+            }
+
             // Redirect with success message
             return redirect('/panel')->with('success', 'Product created successfully');
         } catch (\Exception $e) {
-            // Log the error for administrators
-            Log::error('Error creating product: ' . $e->getMessage());
-
-            // Redirect back with error message
+            // Instead of using Log::error, just return back with errors
             return back()
                 ->withInput($request->all())
                 ->withErrors(['general' => 'There was a problem creating the product. Please try again.']);
