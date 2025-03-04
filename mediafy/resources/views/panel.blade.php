@@ -17,7 +17,9 @@
             </div>
             <ul role="menu" class="text-neutral-4 text-xl flex flex-col gap-2">
                 <li role="menuitem"><a href="/panel" class="text-neutral-1 hover:underline">Products</a></li>
+                @if (auth()->user()->isAdmin())
                 <li role="menuitem"><a href="/" class="text-neutral-1 hover:underline">Users</a></li>
+                @endif
                 <li role="menuitem"><a href="/logout" class="text-neutral-1 hover:underline">Logout</a></li>
             </ul>
         </nav>
@@ -26,9 +28,11 @@
         <section id="maincontent" aria-label="Product Management" class="w-full h-[100vh] px-10">
             <header class="flex justify-between pt-4 pb-6 items-center">
                 <h1 class="text-xl font-semibold">Product list</h1>
+                @if (auth()->user()->isAdmin())
                 <a href="/panel/addproduct" class="bg-primary-1 px-6 py-2 inline-block rounded-md" aria-label="Add new product">
                     Add new product
                 </a>
+                @endif
             </header>
             
             <!-- Success message if present -->
@@ -92,7 +96,8 @@
                                             <td class="px-4 py-2">{{ $product->platform->type }}</td>
                                             <td class="px-4 py-2">{{ $product->price }}kr</td>
                                             <td class="px-4 py-2">{{ $product->stock }}st</td>
-                                            <td class="px-4 py-2">
+                                            @if (auth()->user()->isAdmin())
+                            <td class="px-4 py-2">
                                                 <div class="flex gap-2">
                                                     <a 
                                                         href="{{ route('panel.product.edit', $product->id) }}" 
@@ -115,7 +120,8 @@
                                                     </form>
                                                 </div>
                                             </td>
-                                        </tr>
+                                            @endif
+                        </tr>
                                     @endforeach
                                 @endforeach
                             </tbody>
