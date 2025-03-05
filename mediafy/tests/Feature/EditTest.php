@@ -10,7 +10,7 @@ use App\Models\Product;
 
 class EditTest extends TestCase
 {
-
+    use RefreshDatabase;
     public function test_edit_product_admin()
     {
         $user = User::factory()->create(['role' => 'admin']);

@@ -13,9 +13,9 @@ use App\Models\User;
 
 class AddProductTest extends TestCase
 {
+    use RefreshDatabase;
     public function test_add_product_admin()
     {
-        //$user = User::factory(5)->create(['role' => 'standard']);
         $user = User::factory()->create(['role' => 'admin']);
         $this->actingAs($user);
 
