@@ -17,11 +17,11 @@ Route::get('logout', LogoutController::class);
 //Senare lägg till group för alla auth /panels
 Route::get('/panel', [PanelController::class, 'index'])->middleware("auth");
 
-Route::get('/panel/addproduct', [PanelController::class, 'addproduct']);
+Route::get('/panel/addproduct', [PanelController::class, 'addproduct'])->middleware("auth");
 
 Route::delete('/panel/product{id}/delete', [PanelController::class, 'deleteProduct'])->name("delete");
 
 Route::get('/panel/product/{id}/edit', [PanelController::class, 'editProduct'])->name('panel.product.edit');
 Route::put('/panel/product/{id}/update', [PanelController::class, 'updateProduct'])->name('panel.product.update');
 
-Route::post('/product', [ProductController::class, 'create']);
+Route::post('/product', [ProductController::class, 'create'])->middleware("auth");

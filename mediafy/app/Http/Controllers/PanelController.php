@@ -33,7 +33,9 @@ class PanelController extends Controller
 
     public function addProduct()
     {
-        return view('add');
+        if (auth()->user()->isAdmin()) {
+            return view('add');
+        }
     }
 
     public function deleteProduct($id)
