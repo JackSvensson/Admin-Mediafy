@@ -7,6 +7,7 @@ use App\Models\Title;
 use App\Models\Product;
 use App\Models\Platform;
 use Illuminate\Support\Facades\Log;
+use App\Models\User;
 
 class PanelController extends Controller
 {
@@ -87,24 +88,29 @@ class PanelController extends Controller
             // Update platform if it has changed
             if (!empty($request->input('platforms'))) {
                 $platformType = $request->input('platforms')[0]; // Get the first selected platform
-                $platform = Platform::firstOrCreate(['type' => $platformType]);
+                $platform = Platform::where('type', $platformType)->first();
+                if (!$platform) {
+                    $platform = Platform::create(['type' => $platformType]);
+                }
                 $product->platform_id = $platform->id;
             }
-
-            // Update price and stock
-            $product->price = $request->input('price');
-            $product->stock = $request->input('stock');
-
-            // Save the product changes
-            $saved = $product->save();
-
-            Log::info('Product Update Result', [
-                'saved' => $saved,
-                'product_after_save' => $product->toArray()
-            ]);
         }
 
-        // Explicitly redirect back to the panel
+        // Update price and stock
+        $product->price = $request->input('price');
+        $product->stock = $request->input('stock');
+
+        // Save the product changes
+        $saved = $product->save();
+
+        Log::info('Product Update Result', [
+            'saved' => $saved,
+            'product_after_save' => $product->toArray()
+        ]);
         return redirect('/panel');
     }
+
+    // Explicitly redirect back to the panel
+
+
 }
