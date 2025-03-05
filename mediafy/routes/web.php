@@ -24,4 +24,4 @@ Route::delete('/panel/product{id}/delete', [PanelController::class, 'deleteProdu
 Route::get('/panel/product/{id}/edit', [PanelController::class, 'editProduct'])->name('panel.product.edit')->middleware("auth");
 Route::put('/panel/product/{id}/update', [PanelController::class, 'updateProduct'])->name('panel.product.update')->middleware("auth");
 
-Route::post('/product', [ProductController::class, 'create']);
+Route::post('/product', [ProductController::class, 'create'])->middleware("auth");
