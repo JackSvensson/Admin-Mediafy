@@ -15,21 +15,26 @@ class PanelController extends Controller
     {
         $platform = $request->input('platform', 'ALL');
 
+
+        $query = Title::with(['products.platform']);
+
         if ($platform == 'ALL') {
-            $titles = Title::with(['products.platform'])
-                ->whereHas('products.platform', function ($query) {
-                    $query->whereIn('type', ['Xbox', 'Playstation', 'Nintendo']);
-                })
-                ->paginate(3);
+
+            $query->whereHas('products.platform', function ($query) {
+                $query->whereIn('type', ['Xbox', 'Playstation', 'Nintendo']);
+            });
         } else {
-            $titles = Title::with(['products.platform'])
-                ->whereHas('products.platform', function ($query) use ($platform) {
-                    $query->where('type', $platform);
-                })
-                ->paginate(3);
+
+            $query->whereHas('products.platform', function ($query) use ($platform) {
+                $query->where('type', $platform);
+            });
         }
 
-        return view('panel', compact('titles'));
+
+        $titles = $query->paginate(3);
+
+
+        return view('panel', compact('titles', 'platform'));
     }
 
     public function addProduct()

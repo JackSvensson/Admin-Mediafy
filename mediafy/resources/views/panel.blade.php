@@ -53,10 +53,10 @@
                             class="text-neutral-1 bg-secondary-1 border border-neutral-7 rounded px-2 py-1"
                             aria-label="Filter by platform"
                         >
-                            <option value="ALL" {{ request('platform') == 'ALL' || !request('platform') ? 'selected' : '' }} >All</option>
-                            <option value="Xbox" {{ request('platform') === 'Xbox' ? 'selected' : '' }}>Xbox</option>
-                            <option value="Playstation" {{ request('platform') === 'Playstation' ? 'selected' : '' }}>Playstation</option>
-                            <option value="Nintendo" {{ request('platform') === 'Nintendo' ? 'selected' : '' }}>Nintendo Switch</option>
+                        <option value="ALL" {{ $platform == 'ALL' ? 'selected' : '' }}>All</option>
+                        <option value="Xbox" {{ $platform == 'Xbox' ? 'selected' : '' }}>Xbox</option>
+                        <option value="Playstation" {{ $platform == 'Playstation' ? 'selected' : '' }}>Playstation</option>
+                        <option value="Nintendo" {{ $platform == 'Nintendo' ? 'selected' : '' }}>Nintendo Switch</option>
                         </select>
                         <button 
                             type="submit" 
