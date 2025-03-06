@@ -34,13 +34,13 @@ class PanelController extends Controller
         $titles = $query->paginate(3);
 
 
-        return view('panel', compact('titles', 'platform'));
+        return view('products.panel', compact('titles', 'platform'));
     }
 
     public function addProduct()
     {
         if (auth()->user()->isAdmin()) {
-            return view('add');
+            return view('products.add');
         }
     }
 
@@ -60,7 +60,7 @@ class PanelController extends Controller
     public function editProduct($id)
     {
         $product = Product::with(['title', 'platform'])->findOrFail($id);
-        return view('edit', compact('product'));
+        return view('products.edit', compact('product'));
     }
 
     /**
