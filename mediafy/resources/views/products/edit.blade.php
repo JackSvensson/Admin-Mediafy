@@ -87,7 +87,7 @@
             
             <!-- Stock field -->
             <div class="mb-4">
-                <label for="stock" class="block mb-2 font-medium">Antal i lager</label>
+                <label for="stock" class="block mb-2 font-medium">Quantity in stock</label>
                 <input 
                     name="stock" 
                     id="stock" 

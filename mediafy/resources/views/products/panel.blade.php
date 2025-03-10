@@ -50,7 +50,7 @@
                         <th scope="col" class="px-4 py-2">Title</th>
                         <th scope="col" class="px-4 py-2">Platform</th>
                         <th scope="col" class="px-4 py-2">Price</th>
-                        <th scope="col" class="px-4 py-2">Antal i lager</th>
+                        <th scope="col" class="px-4 py-2">Quantity</th>
                         @if (auth()->check() && auth()->user()->isAdmin())
                         <th scope="col" class="px-4 py-2">Actions</th>
                         @endif
