@@ -67,13 +67,13 @@
                         @if (auth()->user()->isAdmin())
                         <td class="px-4 py-2">
                             <div class="flex gap-2">
-                                
-                                    href="/panel/product/{{ $product->id }}/edit"
+                                <a
+                                    href="{{ route('panel.product.edit', $product->id) }}"
                                     class="text-blue-500 hover:underline edit-icon"
                                     aria-label="Edit {{ $title->name }}">
                                     Edit
                                 </a>
-                                <form action="/panel/product/{{ $product->id }}/delete" method="POST" class="inline">
+                                <form action="{{ route('delete', $product->id) }}" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')
                                     <button
