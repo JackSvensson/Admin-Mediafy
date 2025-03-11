@@ -42,7 +42,7 @@ class PanelController extends Controller
         return view('products.panel', compact('titles', 'platform'));
     }
 
-    // Rest of your methods remain the same
+
     public function addProduct()
     {
         if (auth()->user()->isAdmin()) {
